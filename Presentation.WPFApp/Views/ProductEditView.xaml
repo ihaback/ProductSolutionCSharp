@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Presentation.WPFApp.Views.ProductEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation.WPFApp.Views"
+             mc:Ignorable="d" 
+             Background="white"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ProductEditViewModel}"
+             xmlns:viewmodels="clr-namespace:Presentation.WPFApp.ViewModels"
+             xmlns:models="clr-namespace:Infrastructure.Models;assembly=Infrastructure"
+             d:DesignHeight="770" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Product Edit" Style="{StaticResource ViewTitleTextBlock}" Grid.Row="0" />
+        <TextBlock Text="{Binding ErrorMessage}" Style="{StaticResource ErrorMessageTextBlock}" Grid.Row="1" />
+        <StackPanel Grid.Row="2">
+            <Label Content="Title" Style="{StaticResource FormLabel}"/>
+            <TextBox Text="{Binding Product.Title}" Style="{StaticResource FormTextBox}" />
+            <Label Content="Price" Style="{StaticResource FormLabel}" />
+            <TextBox Text="{Binding PriceText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FormTextBox}" />
+            <Label Content="Category" Style="{StaticResource FormLabel}" />
+            <TextBox Text="{Binding Product.Category.Name}" Style="{StaticResource FormTextBox}" />
+            <Label Content="Manufacturer" Style="{StaticResource FormLabel}" />
+            <TextBox Text="{Binding Product.Manufacturer.Name}" Style="{StaticResource FormTextBox}" />
+        </StackPanel>
+        <UniformGrid Grid.Row="3" Rows="1" Columns="2" Margin="0 40 0 0">
+            <Button Content="Save" Style="{StaticResource StandarButton}" Command="{Binding SaveCommand}" Margin="0 0 10 0"/>
+            <Button Content="Cancel" Style="{StaticResource StandarButton}" Command="{Binding NavigateToListCommand}" Margin="10 0 0 0"/>
+        </UniformGrid>
+    </Grid>
+</UserControl>
